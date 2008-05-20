@@ -13,7 +13,7 @@
 
 /**
  * Provides functionality for including files.
- * 
+ *
  * Refinemend of Konstrukts classloader (www.konstrukt.dk)
  * Thanks for the great MVC framework
  *
@@ -21,28 +21,26 @@
  * @package  Ilib_ClassLoader
  * @author   Sune Jensen <sj@sunet.dk>
  * @author   Lars Olesen <lars@legestue.net>
- * 
- * 
  */
 class Ilib_ClassLoader
 {
     /**
     * Default autoloader for Konstrukt naming scheme.
     */
-    static function autoload($classname) {
+    static function autoload($classname)
+    {
         $filename = str_replace('_', '/', $classname).'.php';
         if (self::SearchIncludePath($filename)) {
             require_once($filename);
         }
     }
-  
-  
+
     /**
     * Searches the include-path for a filename.
     * Returns the absolute path (realpath) if found or FALSE
     * @return mixed
     */
-    static function SearchIncludePath($filename) 
+    static function SearchIncludePath($filename)
     {
         if (is_file($filename)) {
             return $filename;
@@ -56,7 +54,7 @@ class Ilib_ClassLoader
                 return $f;
             }
         }
-        return FALSE;
+        return false;
     }
 }
-?>
+spl_autoload_register(array('Ilib_ClassLoader', 'autoload'));

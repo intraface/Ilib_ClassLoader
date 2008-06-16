@@ -30,7 +30,7 @@ class Ilib_ClassLoader
     static function autoload($classname)
     {
         $filename = str_replace('_', '/', $classname).'.php';
-        if (self::SearchIncludePath($filename)) {
+        if (self::searchIncludePath($filename)) {
             require_once($filename);
         }
     }
@@ -40,7 +40,7 @@ class Ilib_ClassLoader
     * Returns the absolute path (realpath) if found or FALSE
     * @return mixed
     */
-    static function SearchIncludePath($filename)
+    static function searchIncludePath($filename)
     {
         if (is_file($filename)) {
             return $filename;
